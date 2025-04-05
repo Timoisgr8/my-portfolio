@@ -1,14 +1,15 @@
-// App.jsx
 import './App.css';
 import './index.css';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Contact from './components/Contact';
 import Projects from './components/Projects';
-import React, { useState } from 'react';  // <-- Add this import
+import Notes from './components/Notes';
+import React, { useState } from 'react';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('about'); // Default to 'about' tab
+  const [activeTab, setActiveTab] = useState('about');
+  const [isNotesOpen, setIsNotesOpen] = useState(false);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -25,8 +26,9 @@ function App() {
 
   return (
     <>
-      <Navbar setActiveTab={setActiveTab} />
+      <Navbar setActiveTab={setActiveTab} isNotesOpen={isNotesOpen} setIsNotesOpen={setIsNotesOpen} />
       <div className="p-6">{renderContent()}</div>
+      <Notes isOpen={isNotesOpen} setIsOpen={setIsNotesOpen} />
     </>
   );
 }

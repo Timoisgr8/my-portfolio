@@ -23,6 +23,36 @@ ${feedback}
     window.location.href = mailtoLink;
   };
 
+  const handleRatingChange = (e) => {
+    setRating(parseFloat(e.target.value));
+  };
+
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      const isFilled = rating >= i;
+      const isHalfFilled = rating >= i - 0.5 && rating < i;
+      const starClass = isHalfFilled
+        ? 'mask mask-star-2 mask-half-1 bg-green-500'
+        : isFilled
+        ? 'mask mask-star-2 bg-green-500'
+        : 'mask mask-star-2 mask-half-1 bg-gray-300';
+
+      stars.push(
+        <input
+          key={i}
+          type="radio"
+          name="rating-11"
+          className={starClass}
+          aria-label={`${i - 0.5} star`}
+          value={i}
+          onClick={() => setRating(i)}
+        />
+      );
+    }
+    return stars;
+  };
+
   return (
     <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
@@ -65,22 +95,8 @@ ${feedback}
 
         <div>
           <label className="block font-medium mb-1">Rating ({rating} / 5)</label>
-          <input
-            type="range"
-            min="0"
-            max="5"
-            step="0.1"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            className="range range-primary w-full"
-          />
-          <div className="flex justify-between text-xs px-1">
-            <span>0</span>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
+          <div className="rating rating-lg rating-half mb-4">
+            {renderStars()}
           </div>
         </div>
 

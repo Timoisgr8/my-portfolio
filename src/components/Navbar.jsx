@@ -1,10 +1,21 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+
+function GitHubIcon() {
+  return (
+    <a href="https://github.com/timoisgr8" target="_blank" rel="noopener noreferrer" className="ml-2">
+      <FontAwesomeIcon icon={faGithub} className="text-2xl text-black hover:text-gray-600" />
+    </a>
+  );
+}
 
 function Navbar({ setActiveTab, isNotesOpen, setIsNotesOpen }) {
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
-        <a className="btn btn-ghost text-xl">Timothy Tew | Portfolio</a>
+      <div className="navbar-start flex items-center">
+        <a className="btn btn-ghost text-xl" onClick={() => setActiveTab('about')}>Timothy Tew | Portfolio</a>
+        <GitHubIcon />
       </div>
 
       <div className="navbar-center hidden lg:flex">

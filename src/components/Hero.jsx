@@ -174,7 +174,7 @@ function Hero() {
           3rd Year Computer Science Student
         </h1>
         <a href="#about">
-          <button className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+          <button className="mt-4 px-6 py-3 bg-primary text-base-100 rounded-lg hover:bg-primary-focus transition">
             Learn More
           </button>
         </a>

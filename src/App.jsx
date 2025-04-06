@@ -15,7 +15,6 @@ function App() {
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
-  // Function to handle the intersection observer and update active section
   useEffect(() => {
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(
@@ -26,28 +25,25 @@ function App() {
           }
         });
       },
-      {
-        threshold: 0.5, // Trigger when 50% of the section is visible
-      }
+      { threshold: 0.5 }
     );
 
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="relative">
-      {/* Background is rendered outside the App component */}
+    <div className="relative min-h-screen overflow-x-hidden">
+      {/* Persistent background */}
       <Background />
 
-      <div className="z-10 relative">
+      {/* Main content overlay */}
+      <div className="relative z-10">
         {/* Hero Section */}
-        <section id="hero" className="min-h-screen w-full flex flex-col items-center justify-center text-center px-4 relative z-20">
+        <section
+          id="hero"
+          className="min-h-screen w-full flex flex-col items-center justify-center text-center"
+        >
           <Hero />
         </section>
 
@@ -60,23 +56,24 @@ function App() {
           />
         </div>
 
-        <div className="space-y-20 relative z-20">
-          <section id="about" className="min-h-screen w-full px-30 py-12 relative z-20">
+        {/* Main Sections */}
+        <div className="space-y-20 px-4 sm:px-6 md:px-8 lg:px-12 py-12">
+          <section id="about" className="min-h-screen">
             <About />
           </section>
 
-          <section id="projects" className="min-h-screen w-full px-30 py-12 relative z-20">
+          <section id="projects" className="min-h-screen">
             <Projects />
           </section>
 
-          <section id="contact" className="w-full px-30 py-12 relative z-20">
+          <section id="contact">
             <Contact />
           </section>
         </div>
 
         <Footer />
 
-        {/* Notes panel */}
+        {/* Notes Panel */}
         <Notes isOpen={isNotesOpen} setIsOpen={setIsNotesOpen} />
       </div>
     </div>

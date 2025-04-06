@@ -94,24 +94,24 @@ function Notes({ isOpen, setIsOpen }) {
         width: size.width,
         height: size.height,
       }}
-      className="fixed z-50 rounded-lg bg-white shadow-lg border border-gray-300 p-4 flex flex-col"
+      className="fixed z-50 rounded-lg bg-base-100 shadow-lg border border-gray-300 p-4 flex flex-col"
     >
       <div
         ref={topBarRef}
-        className="flex justify-between items-center mb-2 cursor-move"
+        className="flex justify-between items-center mb-2 cursor-move text-primary"
       >
         <h3 className="font-bold">Notes</h3>
-        <button className="btn btn-sm btn-outline" onClick={() => setIsOpen(false)}>Minimise</button>
+        <button className="btn btn-sm btn-outline text-primary" onClick={() => setIsOpen(false)}>Minimise</button>
       </div>
-      
+
       <textarea
-        className="textarea textarea-bordered w-full h-full resize-none box-border"
+        className="textarea textarea-bordered w-full h-full resize-none box-border bg-base-100 text-primary focus:outline-none"
         placeholder="Write your notes here..."
         value={noteContent}
         onChange={(e) => setNoteContent(e.target.value)}
         style={{ flex: 1 }} // Ensures the textarea takes up the available space within the window
       />
-      
+
       {/* Resizer in the bottom-right corner */}
       <div
         ref={resizerRef}

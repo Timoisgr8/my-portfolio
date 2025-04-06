@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}', // Make sure this is set correctly
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      scrollbar: {
+        hide: '::-webkit-scrollbar { display: none; }',
+      },
+    },
   },
-  plugins: [require('daisyui')], // Add this line
+  plugins: [require('@tailwindcss/line-clamp'), require('daisyui'), require('tailwind-scrollbar-hide'),],
+
 };

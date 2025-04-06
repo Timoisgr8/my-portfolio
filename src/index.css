@@ -1,5 +1,33 @@
 /* src/index.css */
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: emerald --default;
+  themes: dark --default;
+}
+
+html,
+body,
+#root {
+  scroll-behavior: smooth;
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  /* Hides horizontal scrollbar */
+  /* Keeps vertical scrolling enabled but hides the scrollbar */
+}
+
+#root {
+  /* For hiding the scrollbar in Webkit browsers (Chrome, Safari) */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* For Firefox */
+}
+
+#root::-webkit-scrollbar {
+  display: none;
+  /* Hides scrollbar in Chrome, Safari, and newer Edge */
 }

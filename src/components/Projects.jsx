@@ -17,14 +17,14 @@ function Projects() {
       id: 2,
       title: 'Portfolio Website',
       language: ['Tailwind', 'React'],
-      imageUrl: '/images/droid.jpg',
+      imageUrl: '/my-portfolio/project_images/probability_library.jpg',
       description: 'A portfolio website built using React and Tailwind CSS.',
     },
     {
       id: 3,
       title: 'Rebel Planner',
       language: ['JavaScript'],
-      imageUrl: '/images/rebel.jpg',
+      imageUrl: '/my-portfolio/project_images/probability_library.jpg',
       description: 'Plan secret missions and escape routes for rebel operations.',
     },
   ];
@@ -44,8 +44,8 @@ function Projects() {
     selectedTags.length === 0
       ? allProjects
       : allProjects.filter((project) =>
-          project.language.some((lang) => selectedTags.includes(lang))
-        );
+        project.language.some((lang) => selectedTags.includes(lang))
+      );
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -58,11 +58,11 @@ function Projects() {
   }, []);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full p-6  rounded-lg p-8 ">
       <div className="flex items-center gap-2 mb-6">
-        <h2 className="text-2xl font-bold">Projects</h2>
+        <h2 className="text-2xl font-bold text-primary">My Projects</h2>
         <button
-          className="btn btn-sm btn-outline"
+          className="btn btn-sm btn-outline text-primary"
           onClick={() => setShowFilters(!showFilters)}
         >
           <FontAwesomeIcon icon={faFilter} />
@@ -74,11 +74,11 @@ function Projects() {
         {showFilters && (
           <motion.div
             ref={filterRef}
-            initial={{ opacity: 0, scale: 0.95, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            initial={{ opacity: 0, scale: 0.95, y: 10, x: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 10, x: 10 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10, x: 10 }}
             transition={{ duration: 0.2 }}
-            className="absolute z-50 top-14 left-0 bg-white border border-gray-200 rounded-lg shadow-lg p-4 w-full max-w-[400px]"
+            className="absolute z-50 top-14 left-0 bg-base-100 border border-gray-300 rounded-lg shadow-lg p-4 w-full max-w-[400px]"
           >
             <div className="flex flex-wrap gap-2">
               <button

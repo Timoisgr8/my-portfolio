@@ -31,12 +31,9 @@ ${feedback}
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       const isFilled = rating >= i;
-      const isHalfFilled = rating >= i - 0.5 && rating < i;
-      const starClass = isHalfFilled
-        ? 'mask mask-star-2 mask-half-1 bg-green-500'
-        : isFilled
-        ? 'mask mask-star-2 bg-green-500'
-        : 'mask mask-star-2 mask-half-1 bg-gray-300';
+      const starClass = isFilled
+        ? 'mask mask-star-2 bg-primary'
+        : 'mask mask-star-2 bg-base-700';
 
       stars.push(
         <input
@@ -44,7 +41,7 @@ ${feedback}
           type="radio"
           name="rating-11"
           className={starClass}
-          aria-label={`${i - 0.5} star`}
+          aria-label={`${i} star`}
           value={i}
           onClick={() => setRating(i)}
         />
@@ -54,12 +51,11 @@ ${feedback}
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Contact Me</h2>
+    <div className="max-w-xl mx-auto bg-base-200 p-6 rounded-lg shadow-md z-10">
+      <h2 className="text-2xl font-bold mb-4 text-primary">Contact Me</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
-          <label className="block font-medium">Name / Alias</label>
+          <label className="block font-medium text-base-content">Name / Alias</label>
           <input
             type="text"
             className="input input-bordered w-full"
@@ -70,7 +66,7 @@ ${feedback}
         </div>
 
         <div>
-          <label className="block font-medium">Email</label>
+          <label className="block font-medium text-base-content">Email</label>
           <input
             type="email"
             className="input input-bordered w-full"
@@ -82,7 +78,7 @@ ${feedback}
         </div>
 
         <div>
-          <label className="block font-medium">Feedback</label>
+          <label className="block font-medium text-base-content">Feedback</label>
           <textarea
             className="textarea textarea-bordered w-full"
             value={feedback}
@@ -94,8 +90,8 @@ ${feedback}
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Rating ({rating} / 5)</label>
-          <div className="rating rating-lg rating-half mb-4">
+          <label className="block font-medium text-base-content mb-1">Rating ({rating} / 5)</label>
+          <div className="rating rating-lg mb-4">
             {renderStars()}
           </div>
         </div>

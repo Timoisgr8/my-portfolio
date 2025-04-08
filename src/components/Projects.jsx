@@ -1,108 +1,122 @@
-import React, { useState, useRef, useEffect } from 'react';
-import ProjectsTab from './ProjectsTab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Projects() {
+  const badgeColors = {
+    Python: 'badge-success',
+    JavaScript: 'badge-warning',
+    React: 'badge-info',
+    Tailwind: 'badge-accent',
+  };
+
   const allProjects = [
     {
       id: 1,
       title: 'Probability Library',
       language: ['Python'],
       imageUrl: '/my-portfolio/project_images/probability_library.jpg',
-      description: 'A python library',
+      description: 'A Python library for working with probability distributions and statistics. Built with simplicity and clarity in mind for education and prototyping.',
     },
     {
       id: 2,
       title: 'Portfolio Website',
       language: ['Tailwind', 'React'],
       imageUrl: '/my-portfolio/project_images/probability_library.jpg',
-      description: 'A portfolio website built using React and Tailwind CSS.',
+      description: 'My personal portfolio built with React, Tailwind, and DaisyUI. Fully responsive, with theme toggling and project filtering.',
     },
     {
       id: 3,
-      title: 'Rebel Planner',
+      title: 'QuantGuide Timer',
       language: ['JavaScript'],
       imageUrl: '/my-portfolio/project_images/probability_library.jpg',
-      description: 'Plan secret missions and escape routes for rebel operations.',
+      description: 'A mission planning app for rebels to organize covert operations. Inspired by Star Wars and strategy games.',
     },
   ];
 
-  const allTags = Array.from(new Set(allProjects.flatMap((p) => p.language)));
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [showFilters, setShowFilters] = useState(false);
-  const filterRef = useRef();
+  const allLanguages = [...new Set(allProjects.flatMap((p) => p.language))];
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(allProjects[0]);
 
-  const toggleTag = (tag) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
-
-  const filteredProjects =
-    selectedTags.length === 0
-      ? allProjects
-      : allProjects.filter((project) =>
-        project.language.some((lang) => selectedTags.includes(lang))
-      );
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (filterRef.current && !filterRef.current.contains(event.target)) {
-        setShowFilters(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  const filteredProjects = selectedLanguage
+    ? allProjects.filter((p) => p.language.includes(selectedLanguage))
+    : allProjects;
 
   return (
-    <div className="relative w-full p-6  rounded-lg p-8 ">
-      <div className="flex items-center gap-2 mb-6">
-        <h2 className="text-2xl font-bold text-primary">My Projects</h2>
-        <button
-          className="btn btn-sm btn-outline text-primary"
-          onClick={() => setShowFilters(!showFilters)}
-        >
-          <FontAwesomeIcon icon={faFilter} />
-        </button>
+    <div id="projects" className="scroll-mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 h-[85vh]  bg-base-100 rounded-box shadow-md p-4 overflow-hidden">
+
+      {/* Left Column: Filter + Project List */}
+      <div className="col-span-1 overflow-y-auto space-y-4 pr-2">
+        {/* Filter Section */}
+        <div className="flex flex-wrap gap-2">
+          <button
+            className={`btn btn-sm ${selectedLanguage === null ? 'btn-primary' : 'btn-outline'}`}
+            onClick={() => setSelectedLanguage(null)}
+          >
+            All
+          </button>
+          {allLanguages.map((lang) => (
+            <button
+              key={lang}
+              className={`btn btn-sm ${selectedLanguage === lang ? 'btn-primary' : 'btn-outline'}`}
+              onClick={() => setSelectedLanguage(lang)}
+            >
+              {lang}
+            </button>
+          ))}
+        </div>
+
+        {/* Project List */}
+        <div className="space-y-2">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              onClick={() => setSelectedProject(project)}
+              className={`cursor-pointer p-3 rounded-box transition hover:bg-base-200 ${selectedProject.id === project.id ? 'bg-primary text-primary-content' : ''
+                }`}
+            >
+              <div className="flex items-center gap-3">
+                <img className="w-12 h-12 object-cover rounded-box" src={project.imageUrl} alt={project.title} />
+                <div>
+                  <div className="font-semibold">{project.title}</div>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {project.language.map((lang) => (
+                      <span
+                        key={lang}
+                        className={`badge badge-sm ${badgeColors[lang] || 'badge-neutral'}`}
+                      >
+                        {lang}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Floating Filter Panel */}
-      <AnimatePresence>
-        {showFilters && (
+      {/* Right Column: Project Details */}
+      <div className="col-span-2 bg-base-200 rounded-box p-6 overflow-y-auto">
+        <AnimatePresence mode="wait">
           <motion.div
-            ref={filterRef}
-            initial={{ opacity: 0, scale: 0.95, y: 10, x: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 10, x: 10 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10, x: 10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute z-50 top-14 left-0 bg-base-100 border border-gray-300 rounded-lg shadow-lg p-4 w-full max-w-[400px]"
+            key={selectedProject.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-wrap gap-2">
-              <button
-                className={`badge badge-outline ${selectedTags.length === 0 ? 'badge-primary' : ''}`}
-                onClick={() => setSelectedTags([])}
-              >
-                All
-              </button>
-              {allTags.map((tag) => (
-                <button
-                  key={tag}
-                  className={`badge badge-outline ${selectedTags.includes(tag) ? 'badge-primary' : ''}`}
-                  onClick={() => toggleTag(tag)}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
+            <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
+            <p className="text-sm opacity-70 mb-4">{selectedProject.language.join(', ')}</p>
+            <img
+              src={selectedProject.imageUrl}
+              alt={selectedProject.title}
+              className="w-full max-h-64 object-cover rounded-box mb-4"
+            />
+            <p className="text-base leading-relaxed">{selectedProject.description}</p>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      </div>
 
-      {/* Projects */}
-      <ProjectsTab projects={filteredProjects} />
     </div>
   );
 }

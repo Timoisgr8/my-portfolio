@@ -173,6 +173,11 @@ function Hero() {
           Hi, I'm Timothy.<br />
           3rd Year Computer Science Student
         </h1>
+
+        <h2>
+          This page is still under construction<br/>
+          🚧⚒️👷  🏗️ 👷🚧
+        </h2>
         <a href="#about">
           <button className="mt-4 px-6 py-3 bg-primary text-base-100 rounded-lg hover:bg-primary-focus transition">
             Learn More

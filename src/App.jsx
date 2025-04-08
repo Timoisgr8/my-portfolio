@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-visible">
       {/* Persistent background */}
       <Background />
 
@@ -42,7 +42,7 @@ function App() {
         {/* Hero Section */}
         <section
           id="hero"
-          className="min-h-screen w-full flex flex-col items-center justify-center text-center"
+          className="min-h-screen w-full flex flex-col items-center justify-center text-center scroll-mt-20"
         >
           <Hero />
         </section>
@@ -57,16 +57,16 @@ function App() {
         </div>
 
         {/* Main Sections */}
-        <div className="space-y-20 px-4 sm:px-6 md:px-8 lg:px-12 py-12">
-          <section id="about" className="min-h-screen">
+        <div className="space-y-0 px-4 sm:px-6 md:px-8 lg:px-12 py-12">
+          <section id="about" className=" min-h-screen  scroll-mt-20">
             <About />
           </section>
 
-          <section id="projects" className="min-h-screen">
+          <section id="projects" className=" min-h-screen  scroll-mt-20">
             <Projects />
           </section>
 
-          <section id="contact">
+          <section id="contact" className="scroll-mt-20">
             <Contact />
           </section>
         </div>

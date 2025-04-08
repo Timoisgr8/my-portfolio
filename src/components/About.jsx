@@ -45,7 +45,6 @@ function About() {
                 <br />
                 <a className="link" href="https://www.linkedin.com/in/timothy-tew/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &nbsp;|&nbsp;
                 <a className="link" href="https://github.com/Timoisgr8" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;|&nbsp;
-                <a className="link" href="https://timoisgr8.github.io/my-portfolio/" target="_blank" rel="noopener noreferrer">Portfolio</a> &nbsp;|&nbsp;
                 <a className="link" href="https://timoisgr8.github.io/my-portfolio/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
               </p>
               <p className="text-base-content">

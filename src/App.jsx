@@ -57,7 +57,8 @@ function App() {
         </div>
 
         {/* Main Sections */}
-        <div className="space-y-0 px-4 sm:px-6 md:px-8 lg:px-12 py-12">
+        <div className="flex flex-col space-y-20 px-4 sm:px-6 md:px-8 lg:px-12 py-12">
+
           <section id="about" className=" min-h-screen  scroll-mt-20">
             <About />
           </section>

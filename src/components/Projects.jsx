@@ -46,9 +46,8 @@ function Projects() {
 
   const allLanguages = [...new Set(allProjects.flatMap((p) => p.language))];
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const [selectedProject, setSelectedProject] = useState(allProjects[0]); // ✅ define selectedProject
-  const SelectedComponent = projectComponents[selectedProject.component]; // ✅ now this is safe
-
+  const [selectedProject, setSelectedProject] = useState(allProjects[0]);
+  const SelectedComponent = projectComponents[selectedProject.component];
   const filteredProjects = selectedLanguage
     ? allProjects.filter((p) => p.language.includes(selectedLanguage))
     : allProjects;

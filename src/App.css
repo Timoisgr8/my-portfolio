@@ -12,3 +12,34 @@
     opacity: 0.3;
   }
 }
+
+
+.text-indigo-sheen {
+  position: relative;
+  background: linear-gradient(
+    120deg,
+    #c7d2fe 0%,
+    #6366f1 40%,
+    #4f46e5 50%,
+    #6366f1 60%,
+    #c7d2fe 100%
+  );
+  background-size: 300% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: indigo-sheen 6s ease-in-out infinite;
+
+  display: inline-block;
+  line-height: 1.2;
+  padding-bottom: 0.15em;
+}
+
+@keyframes indigo-sheen {
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 150% 0;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 function GitHubIcon() {
@@ -12,6 +12,19 @@ function GitHubIcon() {
       className="ml-2"
     >
       <FontAwesomeIcon icon={faGithub} className="text-2xl text-current hover:text-gray-600" />
+    </a>
+  );
+}
+
+function LinedInIcon() {
+  return (
+    <a
+      href="https://www.linkedin.com/in/timothy-tew/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="ml-2"
+    >
+      <FontAwesomeIcon icon={faLinkedin} className="text-2xl text-current hover:text-[#2e65c2]" />
     </a>
   );
 }
@@ -46,6 +59,9 @@ function Navbar({ isNotesOpen, setIsNotesOpen, activeSection }) {
 
         {/* GitHub */}
         <GitHubIcon />
+
+        {/* LinkedIn */}
+        <LinedInIcon />
       </div>
 
       {/* Center - Desktop menu */}

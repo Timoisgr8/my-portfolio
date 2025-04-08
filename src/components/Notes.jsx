@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+import { motion, AnimatePresence } from 'framer-motion';
+
+
 function Notes({ isOpen, setIsOpen }) {
   const initialPosition = { x: window.innerWidth - 340, y: 80 };
   const initialSize = { width: 320, height: 240 }; // Default size for the notes
@@ -83,42 +86,54 @@ function Notes({ isOpen, setIsOpen }) {
   if (!isOpen) return null;
 
   return (
-    <div
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      style={{
-        top: position.y,
-        left: position.x,
-        width: size.width,
-        height: size.height,
-      }}
-      className="fixed z-50 rounded-lg bg-base-100 shadow-lg border border-gray-300 p-4 flex flex-col"
-    >
-      <div
-        ref={topBarRef}
-        className="flex justify-between items-center mb-2 cursor-move text-primary"
-      >
-        <h3 className="font-bold">Notes</h3>
-        <button className="btn btn-sm btn-outline text-primary" onClick={() => setIsOpen(false)}>Minimise</button>
-      </div>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          style={{
+            top: position.y,
+            left: position.x,
+            width: size.width,
+            height: size.height,
+            position: 'fixed',
+          }}
+          className="z-50 rounded-lg bg-base-100 shadow-lg border border-gray-300 p-4 flex flex-col"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 25 } }}
+          exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
+        >
+          <div
+            ref={topBarRef}
+            className="flex justify-between items-center mb-2 cursor-move text-primary"
+          >
+            <h3 className="font-bold">Notes</h3>
+            <button
+              className="btn btn-sm btn-outline text-primary"
+              onClick={() => setIsOpen(false)}
+            >
+              Minimise
+            </button>
+          </div>
 
-      <textarea
-        className="textarea textarea-bordered w-full h-full resize-none box-border bg-base-100 text-primary focus:outline-none"
-        placeholder="Write your notes here..."
-        value={noteContent}
-        onChange={(e) => setNoteContent(e.target.value)}
-        style={{ flex: 1 }} // Ensures the textarea takes up the available space within the window
-      />
+          <textarea
+            className="textarea textarea-bordered w-full h-full resize-none box-border bg-base-100 text-primary focus:outline-none"
+            placeholder="Write your notes here..."
+            value={noteContent}
+            onChange={(e) => setNoteContent(e.target.value)}
+            style={{ flex: 1 }}
+          />
 
-      {/* Resizer in the bottom-right corner */}
-      <div
-        ref={resizerRef}
-        onMouseDown={handleResizeMouseDown}
-        className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize bg-gray-500"
-      />
-    </div>
+          <div
+            ref={resizerRef}
+            onMouseDown={handleResizeMouseDown}
+            className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize bg-gray-500"
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 

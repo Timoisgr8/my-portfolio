@@ -14,21 +14,21 @@ function Projects() {
       id: 1,
       title: 'Probability Library',
       language: ['Python'],
-      imageUrl: '/my-portfolio/project_images/probability_library.jpg',
+      iconUrl: '/my-portfolio/project_icons/python.png',
       description: 'A Python library for working with probability distributions and statistics. Built with simplicity and clarity in mind for education and prototyping.',
     },
     {
       id: 2,
       title: 'Portfolio Website',
       language: ['Tailwind', 'React'],
-      imageUrl: '/my-portfolio/project_images/probability_library.jpg',
+      iconUrl: '/my-portfolio/project_icons/tail_wind.svg',
       description: 'My personal portfolio built with React, Tailwind, and DaisyUI. Fully responsive, with theme toggling and project filtering.',
     },
     {
       id: 3,
       title: 'QuantGuide Timer',
       language: ['JavaScript'],
-      imageUrl: '/my-portfolio/project_images/probability_library.jpg',
+      iconUrl: '/my-portfolio/project_icons/timer.png',
       description: 'A mission planning app for rebels to organize covert operations. Inspired by Star Wars and strategy games.',
     },
   ];
@@ -75,7 +75,7 @@ function Projects() {
                 }`}
             >
               <div className="flex items-center gap-3">
-                <img className="w-12 h-12 object-cover rounded-box" src={project.imageUrl} alt={project.title} />
+                <img className="w-12 h-12 object-cover rounded-box" src={project.iconUrl} alt={project.title} />
                 <div>
                   <div className="font-semibold">{project.title}</div>
                   <div className="flex flex-wrap gap-1 mt-1">
@@ -107,11 +107,8 @@ function Projects() {
           >
             <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
             <p className="text-sm opacity-70 mb-4">{selectedProject.language.join(', ')}</p>
-            <img
-              src={selectedProject.imageUrl}
-              alt={selectedProject.title}
-              className="w-full max-h-64 object-cover rounded-box mb-4"
-            />
+
+
             <p className="text-base leading-relaxed">{selectedProject.description}</p>
           </motion.div>
         </AnimatePresence>

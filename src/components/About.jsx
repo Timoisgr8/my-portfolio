@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import GitHubContributions from './GitHubContributions';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+
 function About() {
   const [activeTab, setActiveTab] = useState('recent');
   const [repos, setRepos] = useState([]);
@@ -42,7 +45,10 @@ function About() {
                 <br />
                 <a className="link" href="https://www.linkedin.com/in/timothy-tew/" target="_blank" rel="noopener noreferrer">LinkedIn</a> &nbsp;|&nbsp;
                 <a className="link" href="https://github.com/Timoisgr8" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;|&nbsp;
-                <a className="link" href="https://timoisgr8.github.io/my-portfolio/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+                <a className="link" href="https://timoisgr8.github.io/my-portfolio/" target="_blank" rel="noopener noreferrer">Portfolio</a> &nbsp;|&nbsp;
+                <a className="link" href="https://timoisgr8.github.io/my-portfolio/public/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  Resume
+                </a>
               </p>
               <p className="text-base-content">
                 High-achieving Computer Science student with a passion for algorithms, problem-solving, and education-focused development. Proficient in C++ with strong Python skills, and familiar with web technologies including HTML, CSS, JavaScript, and MySQL. Experience includes full-stack and game development, NLP research, and algorithmic analysis in social networks.
@@ -56,7 +62,7 @@ function About() {
               <p className="mb-1"><strong>Research:</strong> NLP on AI teacher posts (2025), Star Wars SNA clustering (2024)</p>
               <p className="mb-1"><strong>Project:</strong> Python Probability Library (2025)</p>
               <p className="mb-1"><strong>Awards:</strong> AMOC Honourable Mention, AIMOC Distinction</p>
-              <p className="mb-1"><strong>Interests:</strong> Combinatorics, Bouldering, Learning</p>
+              <p className="mb-1"><strong>Interests:</strong> Mathematics, Bouldering, Coding</p>
               <p className="mb-1"><strong>Community:</strong> Competitive Programming Club</p>
             </div>
           </div>

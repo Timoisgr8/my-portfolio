@@ -170,12 +170,12 @@ function Hero() {
       {/* Hero Content */}
       <div className="relative z-10 text-white px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Hi, I'm Timothy.<br />
+          Hi, I'm <span className="relative inline-block text-indigo-sheen">Timothy</span>.<br />
           3rd Year Computer Science Student
         </h1>
 
         <h2>
-          This page is still under construction<br/>
+          This page is still under construction<br />
           🚧⚒️👷  🏗️ 👷🚧
         </h2>
         <a href="#about">

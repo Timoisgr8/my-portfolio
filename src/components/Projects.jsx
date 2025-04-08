@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import PythonLibrary from './projects/PythonLibrary';
+import PortfolioWebsite from './projects/PortfolioWebsite';
+import QuantGuideTimer from './projects/QuantGuideTimer';
+
+const projectComponents = {
+  PythonLibrary,
+  PortfolioWebsite,
+  QuantGuideTimer,
+};
+
+
 function Projects() {
   const badgeColors = {
     Python: 'badge-success',
@@ -15,27 +26,28 @@ function Projects() {
       title: 'Probability Library',
       language: ['Python'],
       iconUrl: '/my-portfolio/project_icons/python.png',
-      description: 'A Python library for working with probability distributions and statistics. Built with simplicity and clarity in mind for education and prototyping.',
+      component: 'PythonLibrary',
     },
     {
       id: 2,
       title: 'Portfolio Website',
       language: ['Tailwind', 'React'],
       iconUrl: '/my-portfolio/project_icons/tail_wind.svg',
-      description: 'My personal portfolio built with React, Tailwind, and DaisyUI. Fully responsive, with theme toggling and project filtering.',
+      component: 'PortfolioWebsite',
     },
     {
       id: 3,
       title: 'QuantGuide Timer',
       language: ['JavaScript'],
       iconUrl: '/my-portfolio/project_icons/timer.png',
-      description: 'A mission planning app for rebels to organize covert operations. Inspired by Star Wars and strategy games.',
+      component: 'QuantGuideTimer',
     },
   ];
 
   const allLanguages = [...new Set(allProjects.flatMap((p) => p.language))];
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const [selectedProject, setSelectedProject] = useState(allProjects[0]);
+  const [selectedProject, setSelectedProject] = useState(allProjects[0]); // ✅ define selectedProject
+  const SelectedComponent = projectComponents[selectedProject.component]; // ✅ now this is safe
 
   const filteredProjects = selectedLanguage
     ? allProjects.filter((p) => p.language.includes(selectedLanguage))
@@ -108,8 +120,8 @@ function Projects() {
             <h3 className="text-2xl font-bold mb-2">{selectedProject.title}</h3>
             <p className="text-sm opacity-70 mb-4">{selectedProject.language.join(', ')}</p>
 
-
-            <p className="text-base leading-relaxed">{selectedProject.description}</p>
+            {/* Dynamically render project component */}
+            {SelectedComponent ? <SelectedComponent /> : <p>No details available.</p>}
           </motion.div>
         </AnimatePresence>
       </div>

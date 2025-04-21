@@ -10,12 +10,14 @@ export default function PortfolioWebsite() {
 
   return (
     <div className="prose max-w-none">
-      <h4 className="text-xl font-bold mb-2">🧠 PortfolioWebsite — A Meta Showcase of Itself</h4>
+      <h4 className="text-xl font-bold mb-2">🧠 PortfolioWebsite — A Meta Showcase of Itself&nbsp;|&nbsp;
+        <a className="link" href="https://github.com/Timoisgr8/my-portfolio" target="_blank" rel="noopener noreferrer">Github</a></h4>
+
       <p>
         <code className="bg-neutral p-1 rounded-md inline-block">PortfolioWebsite</code> is a personal project that combines design, functionality, and a bit of recursion.
         It serves as a central hub to showcase my projects, thoughts, and skills — all wrapped in a clean, interactive UI built with React, Vite, and DaisyUI.
       </p>
-      
+
       <h5 className="mt-4 font-semibold">🌐 Features</h5>
       <ul>
         <li>Sections for Projects, About Me, GitHub activity, and Notes.</li>
@@ -30,8 +32,8 @@ export default function PortfolioWebsite() {
       </p>
 
       {/* Toggle button for collapsing the iframe */}
-      <button 
-        onClick={toggleIframeVisibility} 
+      <button
+        onClick={toggleIframeVisibility}
         className="btn btn-primary mb-4">
         {isIframeVisible ? 'Collapse Inception' : 'Expand Inception'}
       </button>

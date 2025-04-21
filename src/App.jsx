@@ -72,12 +72,14 @@ function App() {
           </section>
         </div>
 
-        <Footer />
-
         {/* Notes Panel */}
         <Notes isOpen={isNotesOpen} setIsOpen={setIsNotesOpen} />
       </div>
+
+
+      <Footer />
     </div>
+
   );
 }
 
